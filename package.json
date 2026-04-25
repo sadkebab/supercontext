@@ -8,6 +8,7 @@
     "typescript"
   ],
   "license": "MIT",
+  "author": "Alberto Harka",
   "files": [
     "dist",
     "README.md"
