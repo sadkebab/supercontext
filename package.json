@@ -25,7 +25,10 @@
   },
   "scripts": {
     "build": "tsup",
-    "prepublishOnly": "npm run typecheck && npm run lint && npm run test && npm run build",
+    "prepare:dist": "node ./scripts/prepare-dist-package.mjs",
+    "version:from-tag": "node ./scripts/version-from-tag.mjs",
+    "publish:dist": "pnpm publish dist --no-git-checks --access public",
+    "prepublish": "pnpm typecheck && pnpm lint && pnpm format:check && pnpm test && pnpm build && pnpm prepare:dist",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
