@@ -38,4 +38,4 @@ jobs:
         run: pnpm prepublish
 
       - name: Publish package from dist
-        run: pnpm publish dist --no-git-checks --access public
+        run: pnpm publish dist --no-git-checks --provenance --access public
