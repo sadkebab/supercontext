@@ -334,16 +334,40 @@ Error class thrown when a required context is not provided.
 
 ## Error Handling
 
-When a context is required but not provided, a `MissingProviderError` is thrown:
+When a required context is missing, `superctx` throws a `MissingProviderError` as soon as you try to read it.
+
+This fail-fast behavior is intentional: it surfaces provider mistakes immediately, instead of silently propagating `null` values and causing harder-to-debug errors later.
+
+### Vanilla
 
 ```typescript
-import { MissingProviderError } from "superctx";
+import { createContext, useContext } from "react";
 
-try {
-  const user = UserContext.useProvided();
-} catch (error) {
-  if (error instanceof MissingProviderError) {
-    console.error("User context not provided");
+export const MyContext = createContext<{
+  foo: "bar";
+}>(null!);
+
+export function useMyContext() {
+  const value = useContext(MyContext);
+  if (!value) {
+    throw new Error("useMyContext requires a MyContext provider");
   }
+  return value;
+}
+```
+
+### With superctx
+
+```typescript
+import { createSuperContext } from "superctx";
+
+export const MyContext = createSuperContext<{
+  foo: "bar";
+}>({
+  notProvidedMessage: "MyContext provider is missing",
+});
+
+export function useMyContext() {
+  return MyContext.useProvided();
 }
 ```
