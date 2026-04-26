@@ -223,21 +223,13 @@ describe("Resolver component", () => {
       initialValue: "single",
     });
 
-    render(
-      <Consumer providers={[context1]}>
-        {(values) => <div>{values[0]}</div>}
-      </Consumer>,
-    );
+    render(<Consumer providers={[context1]}>{(values) => <div>{values[0]}</div>}</Consumer>);
 
     expect(screen.getByText("single")).toBeDefined();
   });
 
   it("should handle empty deps array", () => {
-    render(
-      <Consumer providers={[]}>
-        {(values) => <div>Count: {values.length}</div>}
-      </Consumer>,
-    );
+    render(<Consumer providers={[]}>{(values) => <div>Count: {values.length}</div>}</Consumer>);
 
     expect(screen.getByText("Count: 0")).toBeDefined();
   });

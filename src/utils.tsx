@@ -8,16 +8,12 @@ type AggregateConsumerProps<T extends readonly SuperContext<any>[]> = {
   }) => ReactNode;
 };
 
-export function Consumer<T extends readonly SuperContext<any>[]>(
-  props: AggregateConsumerProps<T>,
-) {
+export function Consumer<T extends readonly SuperContext<any>[]>(props: AggregateConsumerProps<T>) {
   const contextValues = useProviders(props.providers);
   return props.children(contextValues as any);
 }
 
-export function useProviders<T extends readonly SuperContext<any>[]>(
-  deps: readonly [...T],
-) {
+export function useProviders<T extends readonly SuperContext<any>[]>(deps: readonly [...T]) {
   return deps.map((context) => context.useProvided()) as {
     [K in keyof T]: T[K] extends SuperContext<infer U> ? NonNullable<U> : never;
   };
