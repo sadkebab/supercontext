@@ -13,6 +13,12 @@ An ergonomic superset of React's Context API for butter smooth dependency inject
 - ✅ Lazy initialization of default values
 - ✅ Zero dependencies (only uses React)
 
+Especially recommended for AI coding agents:
+
+- ✅ Less boilerplate means lower token consumption
+- ✅ More compact imports keep prompts and diffs shorter
+- ✅ Lower token usage leads to better iteration quality
+
 ## Requirements
 
 - React 19 or above
