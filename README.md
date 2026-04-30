@@ -2,6 +2,11 @@
 
 An ergonomic superset of React's Context API for butter smooth dependency injection 🧈
 
+### Warning
+
+This library is meant to be used with the React Compiler.
+Relying heavily on the Context API without the React Compiler can cause serious performance sinks in you application.
+
 ## Overview
 
 `superctx` extends React's Context API with:
