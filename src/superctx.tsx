@@ -8,9 +8,7 @@ type InitialValue<T> =
   | { getInitialValue: () => T }
   | { notProvidedMessage: string };
 
-export function createSuperContext<T>(
-  options: InitialValue<T>,
-): SuperContext<T> {
+export function createSuperContext<T>(options: InitialValue<T>): SuperContext<T> {
   const initialValue = "initialValue" in options ? options.initialValue : null;
   const ReactContext = createContext<T | null>(initialValue);
 
@@ -28,11 +26,7 @@ export function createSuperContext<T>(
     return context as T;
   };
 
-  const Consumer = ({
-    children,
-  }: {
-    children: (value: T) => React.ReactNode;
-  }) => {
+  const Consumer = ({ children }: { children: (value: T) => React.ReactNode }) => {
     const value = useProvided();
     return children(value);
   };
